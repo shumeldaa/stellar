@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signage 75/25</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    cursor: none;
+  }
+  .screen {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+  }
+  .left {
+    width: 75%;
+    height: 100%;
+    background: #eef1f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .right {
+    width: 25%;
+    height: 100%;
+    background: #262a62;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .left img,
+  .right video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* змініть на cover, щоб заповнити весь блок з обрізанням */
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <div class="screen">
+    <div class="left">
+      <img src="image.png" alt="">
+    </div>
+    <div class="right">
+      <video src="video.mp4" autoplay muted loop playsinline preload="auto"></video>
+    </div>
+  </div>
+<script>
+  // Страховка: якщо відео зупинилось — запускаємо знову
+  const v = document.querySelector('video');
+  v.play().catch(() => {});
+  setInterval(() => { if (v.paused) v.play().catch(() => {}); }, 5000);
+</script>
+</body>
+</html>
